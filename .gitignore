@@ -1,3 +1,2 @@
-linked-list-int.o
-test.o
+*.o
 test
