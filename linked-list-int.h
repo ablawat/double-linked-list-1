@@ -10,8 +10,8 @@
     LinkedListInt;
     
     LinkedListInt ** LinkedListIntCreate();
-    int LinkedListIntAddFirst(LinkedListInt **list, Value *value);
-    int LinkedListIntAddLast(LinkedListInt **list, Value *value);
+    int  LinkedListIntAddFirst(LinkedListInt **list, Value *value);
+    int  LinkedListIntAddLast(LinkedListInt **list, Value *value);
     void LinkedListIntRemoveFirst(LinkedListInt **list);
     void LinkedListIntRemoveLast(LinkedListInt **list);
     void LinkedListIntRemove(LinkedListInt **list, LinkedListInt *toRemove);
