@@ -1,23 +1,25 @@
 #ifndef LINKED_LIST_INT_H
 #define LINKED_LIST_INT_H
 
-typedef struct linkedListInt
+typedef struct linked_list_uint
 {
-    Value                   value;
+    unsigned int             value;
     
-    struct linkedListInt    *next;
-    struct linkedListInt    *prev;
+    struct linked_list_uint  *next;
+    struct linked_list_uint  *prev;
 }
-LinkedListInt;
+linked_list_uint_t;
 
-LinkedListInt ** LinkedListIntCreate();
-int  LinkedListIntAddFirst(LinkedListInt **list, Value *value);
-int  LinkedListIntAddLast(LinkedListInt **list, Value *value);
-void LinkedListIntRemoveFirst(LinkedListInt **list);
-void LinkedListIntRemoveLast(LinkedListInt **list);
-void LinkedListIntRemove(LinkedListInt **list, LinkedListInt *toRemove);
-void LinkedListIntClear(LinkedListInt **list);
+linked_list_uint ** linked_list_uint_create();
 
-void LinkedListIntPrint(LinkedListInt **list);
+int   linked_list_uint_add_first     (linked_list_uint_t **list, unsigned int value);
+int   linked_list_uint_add_last      (linked_list_uint_t **list, unsigned int value);
+
+void  linked_list_uint_remove_first  (linked_list_uint_t **list);
+void  linked_list_uint_remove_last   (linked_list_uint_t **list);
+void  linked_list_uint_remove        (linked_list_uint_t **list, linked_list_uint_t *to_remove);
+
+void  linked_list_uint_clear         (linked_list_uint_t **list);
+void  linked_list_uint_print         (linked_list_uint_t **list);
 
 #endif
