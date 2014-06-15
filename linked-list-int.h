@@ -10,7 +10,7 @@ typedef struct linked_list_uint
 }
 linked_list_uint_t;
 
-linked_list_uint ** linked_list_uint_create();
+linked_list_uint_t ** linked_list_uint_create();
 
 int   linked_list_uint_add_first     (linked_list_uint_t **list, unsigned int value);
 int   linked_list_uint_add_last      (linked_list_uint_t **list, unsigned int value);
