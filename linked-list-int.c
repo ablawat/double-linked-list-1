@@ -17,28 +17,28 @@ linked_list_int_t ** linked_list_int_create()
 // --------------------------------
 int linked_list_int_add_first(linked_list_int_t **list, int value)
 {
-    linked_list_int_t *new_value = malloc(sizeof(linked_list_int_t));
+    linked_list_int_t *new_item = malloc(sizeof(linked_list_int_t));
     int result;
     
-    if (new_value != NULL)
+    if (new_item != NULL)
     {
-        new_value -> value = value;
+        new_item -> value = value;
         
         if (list[0] == NULL)
         {
-            new_value -> next = NULL;
-            new_value -> prev = NULL;
+            new_item -> next = NULL;
+            new_item -> prev = NULL;
             
-            list[0] = new_value;
-            list[1] = new_value;
+            list[0] = new_item;
+            list[1] = new_item;
         }
         else
         {
-            new_value -> next = list[0];
-            new_value -> prev = NULL;
+            new_item -> next = list[0];
+            new_item -> prev = NULL;
             
-            list[0] -> prev = new_value;
-            list[0] = new_value;
+            list[0] -> prev = new_item;
+            list[0] = new_item;
         }
         
         result = 0;
@@ -55,28 +55,28 @@ int linked_list_int_add_first(linked_list_int_t **list, int value)
 // ------------------------------
 int linked_list_int_add_last(linked_list_int_t **list, int value)
 {
-    linked_list_int_t *new_value = malloc(sizeof(linked_list_int_t));
+    linked_list_int_t *new_item = malloc(sizeof(linked_list_int_t));
     int result;
     
-    if (new_value != NULL)
+    if (new_item != NULL)
     {
-        new_value -> value = value;
+        new_item -> value = value;
         
         if (list[0] == NULL)
         {
-            new_value -> next = NULL;
-            new_value -> prev = NULL;
+            new_item -> next = NULL;
+            new_item -> prev = NULL;
             
-            list[0] = new_value;
-            list[1] = new_value;
+            list[0] = new_item;
+            list[1] = new_item;
         }
         else
         {
-            new_value -> next = NULL;
-            new_value -> prev = list[1];
+            new_item -> next = NULL;
+            new_item -> prev = list[1];
             
-            list[1] -> next = new_value;
-            list[1] = new_value;
+            list[1] -> next = new_item;
+            list[1] = new_item;
         }
         
         result = 0;
@@ -93,7 +93,7 @@ int linked_list_int_add_last(linked_list_int_t **list, int value)
 // ------------------------------
 void linked_list_int_remove_first(linked_list_int_t **list)
 {
-    linked_list_int_t *tmp_value;
+    linked_list_int_t *list_item;
     
     if (list[0] != NULL)
     {
@@ -105,11 +105,11 @@ void linked_list_int_remove_first(linked_list_int_t **list)
         }
         else
         {
-            tmp_value = list[0] -> next;
-            tmp_value -> prev = NULL;
+            list_item = list[0] -> next;
+            list_item -> prev = NULL;
             
             free(list[0]);
-            list[0] = tmp_value;
+            list[0] = list_item;
         }
     }
 }
@@ -118,7 +118,7 @@ void linked_list_int_remove_first(linked_list_int_t **list)
 // ---------------------------
 void linked_list_int_remove_last(linked_list_int_t **list)
 {
-    linked_list_int_t *tmp_value;
+    linked_list_int_t *list_item;
     
     if (list[0] != NULL)
     {
@@ -130,11 +130,11 @@ void linked_list_int_remove_last(linked_list_int_t **list)
         }
         else
         {
-            tmp_value = list[1] -> prev;
-            tmp_value -> next = NULL;
+            list_item = list[1] -> prev;
+            list_item -> next = NULL;
             
             free(list[1]);
-            list[1] = tmp_value;
+            list[1] = list_item;
         }
     }
 }
@@ -143,7 +143,7 @@ void linked_list_int_remove_last(linked_list_int_t **list)
 // ---------------------
 void linked_list_int_remove(linked_list_int_t **list, linked_list_int_t *to_remove)
 {
-    linked_list_int_t *tmp_value;
+    linked_list_int_t *list_item;
     
     if (list[0] == to_remove)
     {
@@ -155,11 +155,11 @@ void linked_list_int_remove(linked_list_int_t **list, linked_list_int_t *to_remo
         }
         else
         {
-            tmp_value = list[0] -> next;
-            tmp_value -> prev = NULL;
+            list_item = list[0] -> next;
+            list_item -> prev = NULL;
             
             free(list[0]);
-            list[0] = tmp_value;
+            list[0] = list_item;
         }
     }
     else
@@ -174,11 +174,11 @@ void linked_list_int_remove(linked_list_int_t **list, linked_list_int_t *to_remo
             }
             else
             {
-                tmp_value = list[1] -> prev;
-                tmp_value -> next = NULL;
+                list_item = list[1] -> prev;
+                list_item -> next = NULL;
                 
                 free(list[1]);
-                list[1] = tmp_value;
+                list[1] = list_item;
             }
         }
         else
@@ -195,13 +195,13 @@ void linked_list_int_remove(linked_list_int_t **list, linked_list_int_t *to_remo
 
 void linked_list_int_clear(linked_list_int_t **list)
 {
-    linked_list_int_t *tmp_value = list[0];
+    linked_list_int_t *list_item = list[0];
     linked_list_int_t *to_remove;
     
-    while (tmp_value != NULL)
+    while (list_item != NULL)
     {
-        to_remove = tmp_value;
-        tmp_value = tmp_value -> next;
+        to_remove = list_item;
+        list_item = list_item -> next;
         free(to_remove);
     }
     
@@ -213,28 +213,30 @@ void linked_list_int_clear(linked_list_int_t **list)
 // -------------------------
 void linked_list_int_print(linked_list_int_t **list)
 {
-    linked_list_int_t *tmp_value = list[0];
+    linked_list_int_t *list_item = list[0];
     
     printf("L");
     
-    while (tmp_value != NULL)
+    while (list_item != NULL)
     {
         printf("-|");
-        printf("%d", tmp_value -> value);
+        printf("%d", list_item -> value);
         printf("|");
-        tmp_value = tmp_value -> next;
+        
+        list_item = list_item -> next;
     }
     
     putchar(32);
     
-    tmp_value = list[1];
+    list_item = list[1];
     
-    while (tmp_value != NULL)
+    while (list_item != NULL)
     {
         printf("|");
-        printf("%d", tmp_value -> value);
+        printf("%d", list_item -> value);
         printf("|-");
-        tmp_value = tmp_value -> prev;
+        
+        list_item = list_item -> prev;
     }
     
     printf("L");
